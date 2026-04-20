@@ -11,198 +11,221 @@ body {
   line-height: 1.6;
 }
 
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
 header {
-  background-color: #ffffff;
-  padding: 60px 20px;
+  background: linear-gradient(135deg, #4169E1 0%, #2E4A8A 100%);
+  padding: 80px 20px;
   text-align: center;
-  border-bottom: 1px solid #e0e0e0;
+  color: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 5px;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
 
 header p {
-  font-size: 1.1rem;
-  color: #666;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 300;
 }
 
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
 }
 
 section {
-  margin-bottom: 60px;
+  padding: 50px 20px;
 }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 25px;
-  color: #1a1a1a;
-}
-
-a {
-  color: #4169E1;
-  transition: color 0.2s;
-}
-
-a:hover {
-  color: #B8860B;
+.contatos, .publicacoes, .badges {
+  background-color: white;
+  margin: 30px 0;
 }
 
 .grid-contatos {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-.grid-contatos a {
-  padding: 15px 20px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  display: block;
-  transition: all 0.2s;
-}
-
-.grid-contatos a:hover {
-  border-color: #4169E1;
-  box-shadow: 0 2px 8px rgba(65, 105, 225, 0.1);
+  gap: 20px;
 }
 
 @media (min-width: 768px) {
   .grid-contatos {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.grid-contatos a {
+  display: block;
+  padding: 25px;
+  background-color: #ffffff;
+  border-left: 5px solid #4169E1;
+  border-radius: 4px;
+  color: #1a1a1a;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(65, 105, 225, 0.08);
+  transition: all 0.3s ease;
+}
+
+.grid-contatos a:hover {
+  background-color: #f0f3ff;
+  border-left-color: #B8860B;
+  box-shadow: 0 6px 16px rgba(65, 105, 225, 0.15);
+  transform: translateY(-2px);
 }
 
 .cards {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.card {
-  background-color: #ffffff;
-  padding: 25px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  transition: all 0.2s;
-}
-
-.card:hover {
-  border-color: #4169E1;
-  box-shadow: 0 4px 12px rgba(65, 105, 225, 0.1);
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.card p {
-  color: #666;
-  font-size: 0.95rem;
-  margin-bottom: 15px;
-}
-
-.card a {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #4169E1;
-  color: #ffffff;
-  border-radius: 3px;
-  transition: background-color 0.2s;
-}
-
-.card a:hover {
-  background-color: #B8860B;
+  gap: 25px;
 }
 
 @media (min-width: 768px) {
   .cards {
     flex-direction: row;
+    flex-wrap: wrap;
   }
   
   .card {
-    flex: 1;
+    flex: 0 1 calc(33.333% - 17px);
   }
+}
+
+.card {
+  background-color: #ffffff;
+  border-left: 5px solid #4169E1;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(65, 105, 225, 0.08);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-left-color: #B8860B;
+  box-shadow: 0 8px 20px rgba(65, 105, 225, 0.15);
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.card p {
+  color: #666;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+}
+
+.card a {
+  display: inline-block;
+  padding: 10px 24px;
+  background-color: transparent;
+  color: #4169E1;
+  border: 2px solid #4169E1;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.card a:hover {
+  background-color: #B8860B;
+  color: #ffffff;
+  border-color: #B8860B;
 }
 
 .flex-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 20px;
 }
 
 .badge {
-  padding: 10px 20px;
-  border-radius: 4px;
-  color: #ffffff;
+  padding: 12px 24px;
+  border: 2px solid;
+  background-color: transparent;
+  border-radius: 20px;
+  text-decoration: none;
   font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
   display: inline-block;
-  transition: all 0.2s;
 }
 
 .badge.zenodo {
-  background-color: #0033A0;
+  border-color: #0033A0;
+  color: #0033A0;
 }
 
 .badge.zenodo:hover {
-  background-color: #001f70;
+  background-color: #0033A0;
+  color: white;
 }
 
 .badge.lattes {
-  background-color: #009639;
+  border-color: #009639;
+  color: #009639;
 }
 
 .badge.lattes:hover {
-  background-color: #006b2a;
+  background-color: #009639;
+  color: white;
 }
 
 .badge.orcid {
+  border-color: #A6CE39;
+  color: #A6CE39;
+}
+
+.badge.orcid:hover {
   background-color: #A6CE39;
   color: #1a1a1a;
 }
 
-.badge.orcid:hover {
-  background-color: #8baf2d;
-}
-
 .badge.sindepol {
-  background-color: #4169E1;
+  border-color: #4169E1;
+  color: #4169E1;
 }
 
 .badge.sindepol:hover {
-  background-color: #2e4cb3;
+  background-color: #4169E1;
+  color: white;
 }
 
 .badge.github {
-  background-color: #333333;
+  border-color: #333333;
+  color: #333333;
 }
 
 .badge.github:hover {
-  background-color: #1a1a1a;
+  background-color: #333333;
+  color: white;
 }
 
 footer {
-  background-color: #ffffff;
-  padding: 30px 20px;
+  background-color: #f0f3ff;
+  padding: 40px 20px;
   text-align: center;
-  border-top: 1px solid #e0e0e0;
-  color: #666;
-  font-size: 0.95rem;
+  color: #1a1a1a;
+  border-top: 1px solid #e0e5ff;
 }
 
-@media (max-width: 767px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
+footer p {
+  margin: 0;
+  font-size: 0.95rem;
 }
