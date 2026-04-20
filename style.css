@@ -1,0 +1,184 @@
+:root {
+  --color-primary: #4169E1; /* Royal Blue */
+  --color-accent: #B8860B; /* Ouro Latão Envelhecido */
+  --color-dark: #1a1a1a; /* Preto */
+  --color-light: #f9f9f9; /* Cinza claro */
+  --color-zenodo: #0033A0; /* CERN Blue */
+  --color-lattes: #009639; /* CNPq Green */
+  --color-orcid: #A6CE39; /* ORCID Green */
+  --color-sindepol: #4169E1; /* Assuming primary for corporate */
+  --transition-duration: 0.3s;
+}
+
+/* Modern CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif; /* Sans-serif for body */
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, 'Times New Roman', serif; /* Serif for titles */
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Layouts with CSS Grid/Flexbox */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mobile-first responsive grid */
+.grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-duration);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* CTA Buttons */
+.btn-cta {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+}
+
+.btn-cta:hover {
+  background-color: var(--color-accent);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  background-color: var(--color-light);
+  color: var(--color-primary);
+  transition: border-color var(--transition-duration);
+}
+
+.badge:hover {
+  border-color: var(--color-accent);
+}
+
+/* Institutional Colors */
+.zenodo {
+  color: var(--color-zenodo);
+}
+
+.lattes {
+  color: var(--color-lattes);
+}
+
+.orcid {
+  color: var(--color-orcid);
+}
+
+.sindepol {
+  color: var(--color-sindepol);
+}
+
+/* Storytelling Cards */
+.card {
+  background-color: var(--color-light);
+  border: 1px solid var(--color-dark);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-duration), transform var(--transition-duration);
+}
+
+.card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Lazy Loading */
+.lazy {
+  opacity: 0;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity var(--transition-duration);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-light: #1a1a1a;
+    --color-dark: #f9f9f9;
+  }
+
+  body {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+  }
+
+  .card {
+    background-color: var(--color-light);
+    border-color: var(--color-dark);
+  }
+
+  .badge {
+    background-color: var(--color-light);
+    color: var(--color-primary);
+  }
+}
