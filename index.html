@@ -1,128 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Badge Oxford Aprimorado</title>
-  <style>
-    /* Estilos base para demo de cards, grid, cores - PRESERVADOS */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 2rem;
-      background: #f5f5f5;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-    }
-
-    /* (1) MELHORIA: Badge .badge.oxford */
-    .badge.oxford {
-      display: inline-flex;
-      align-items: baseline;
-      position: relative;
-      background-color: #003366;
-      color: #ffffff;
-      padding: 0.3rem 0.8rem 0.3rem 2.2rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      line-height: 1.25;
-      text-decoration: none;
-      word-spacing: 0.12em;
-      transition: all 0.3s ease;
-      margin-bottom: 1rem;
-    }
-    .badge.oxford:hover {
-      background-color: #002855;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(0,51,102,0.4);
-    }
-    /* Tipografia oficial Oxford */
-    .badge.oxford .oxford-part {
-      font-family: Georgia, "Times New Roman", Times, serif;
-      font-weight: 700;
-      font-size: 1em;
-    }
-    .badge.oxford .academic-part {
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 400;
-      font-size: 0.95em;
-    }
-    /* Símbolo: círculo + 4 raios limpos (CSS puro, gradients sem blur) */
-    .badge.oxford::before {
-      content: "";
-      position: absolute;
-      left: 0.4rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 1.4rem;
-      height: 1.4rem;
-      background-image:
-        radial-gradient(circle 0.28rem at center, #ffffff 0 100%, transparent 100%),
-        linear-gradient(to right, #ffffff 0 100%),
-        linear-gradient(to bottom, #ffffff 0 100%);
-      background-size:
-        0.56rem 0.56rem,
-        1.4rem 0.14rem,
-        0.14rem 1.4rem;
-      background-position: center, center, center;
-      background-repeat: no-repeat;
-    }
-
-    /* (2) e (3): Transições e :active mobile */
-    @media (max-width: 768px) {
-      .card,
-      .badge.oxford {
-        transition-duration: 0.5s;
-      }
-      .card:active,
-      .badge.oxford:active {
-        transform: scale(1.02);
-        box-shadow:
-          0 10px 30px rgba(0,51,102,0.7),
-          inset 0 1px 0 rgba(255,255,255,0.4);
-        pointer-events: auto;
-        touch-action: manipulation;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Vicente de Oliveira</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="grid">
-    <div class="card">
-      <a href="#" class="badge oxford">
-        <span class="oxford-part">Oxford</span>
-        <span class="academic-part">Academic</span>
-      </a>
-      <h3>Card 1</h3>
-      <p>Demo: teste hover (desktop 0.3s, mobile 0.5s), active tátil mobile.</p>
-    </div>
-    <div class="card">
-      <h3>Card 2</h3>
-      <p>Estilos de cards/grid/cores preservados integralmente.</p>
-    </div>
-    <div class="card">
-      <a href="#" class="badge oxford">
-        <span class="oxford-part">Oxford</span>
-        <span class="academic-part">Academic</span>
-      </a>
-      <h3>Card 3</h3>
-      <p>Símbolo à esquerda, hover elegante.</p>
-    </div>
-  </div>
+    <header>
+        <h1>Dr. Vicente de Oliveira</h1>
+        <p>Delegado de Polícia Civil</p>
+    </header>
+    <main>
+        <section class="contatos">
+            <h2>Contatos</h2>
+            <div class="grid-contatos">
+                <a href="mailto:profvicdeloliveira@gmail.com">Email</a>
+                <a href="https://wa.me/5534984340910">WhatsApp</a>
+                <a href="https://www.facebook.com/profile.php?id=100090279406930&ref=PROFILE_EDIT_ig_profile_ac">Facebook</a>
+                <a href="https://x.com/prof_vicdelta">X</a>
+                <a href="https://www.instagram.com/oliveiradepvicente">Instagram</a>
+                <a href="https://www.tiktok.com/@profvicdeloliveira">TikTok</a>
+                <a href="https://independent.academia.edu/VicentedePauloSilvaeOliveira">Academia.edu</a>
+                <a href="https://academic.oup.com/?login=true" class="badge oxford">Oxford Academic</a>
+            </div>
+        </section>
+        <section class="publicacoes">
+            <h2>Publicações</h2>
+            <div class="cards">
+                <div class="card" data-publication="audiencia">
+                    <h3>Audiência de Custódia Desmistificada</h3>
+                    <p class="card__description">A audiência de custódia exerce papel estratégico na mediação entre a proteção de direitos fundamentais e a efetividade da persecução penal</p>
+                    <p>SindePol | outubro 2025</p>
+                    <a href="https://www.sindepol.com.br/artigos/audiencia-de-custodia-desmistificada-influxos-e-contrafluxos-na-investigacao-policial-a-luz-dos-direitos-humanos/">Acessar</a>
+                </div>
+                <div class="card" data-publication="mulher">
+                    <h3>A Dignidade Humana da Mulher como Stress Test Civilizatório: Bioconstitucionalismo, Untermassverbot, a Polícia Judiciária como anteparo Constitucional, e a superação do litimus test pelo Estado Democrático de Direito</h3>
+                    <p class="card__description">A matriz totipotente da vida. A reversão ontológica. A superação do litimus test pelo bioconstitucionalismo.</p>
+                    <p>Zenodo | 2026</p>
+                    <a href="https://zenodo.org/records/19561097">Acessar</a>
+                </div>
+                <div class="card" data-publication="origem">
+                    <h3>A Dignidade da Pessoa Humana: do embrião civilizatório à positivação jurídica</h3>
+                    <p class="card__description">Do protopositivismo egípcio à DUDH. A polícia judiciária como garantidora imediata da dignidade humana.</p>
+                    <p>Zenodo | 2026</p>
+                    <a href="https://zenodo.org/records/19077972">Acessar</a>
+                </div>
+            </div>
+        </section>
+        <section class="badges">
+            <h2>Referências Acadêmicas</h2>
+            <div class="flex-badges">
+                <a href="https://academic.oup.com/?login=true" class="badge oxford">Oxford Academic</a>
+                <a href="https://zenodo.org/records" class="badge zenodo">Zenodo</a>
+                <a href="http://lattes.cnpq.br/5541100569750891" class="badge lattes">Lattes</a>
+                <a href="https://orcid.org/0009-0006-4436-0915" class="badge orcid">ORCID</a>
+                <a href="https://www.sindepol.com.br" class="badge sindepol">SindePol</a>
+                <a href="https://github.com/profvicdeloliveira" class="badge github">GitHub</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Dr. Vicente de Oliveira. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
