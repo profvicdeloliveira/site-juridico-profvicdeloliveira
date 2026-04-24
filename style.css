@@ -325,3 +325,123 @@ footer p {
   color: #ffffff;
   border-color: #4169E1;
 }
+/* ===== FASE A: Oxford Academic Redesign ===== */
+
+/* Badge Oxford: Tipografia + Símbolo Simplificado */
+.badge.oxford {
+  display: inline-flex;
+  align-items: baseline;
+  position: relative;
+  background: linear-gradient(135deg, #003366 0%, #001844 100%);
+  color: #ffffff;
+  padding: 0.4rem 0.9rem 0.4rem 2.4rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.3;
+  text-decoration: none;
+  word-spacing: 0.15em;
+  letter-spacing: 0.3px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-appearance: none;
+  border: none;
+}
+
+/* Tipografia oficial Oxford dentro do badge */
+.badge.oxford .oxford-word {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+.badge.oxford .academic-word {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 0.95em;
+  margin-left: 0.08em;
+}
+
+/* Símbolo: Círculo + 4 Raios Limpos (CSS Puro) */
+.badge.oxford::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.3rem;
+  height: 1.3rem;
+  background-image:
+    /* Círculo central */
+    radial-gradient(circle 0.26rem at center, #ffffff 0%, transparent 100%),
+    /* Raia horizontal */
+    linear-gradient(to right, #ffffff 0%, #ffffff 100%),
+    /* Raia vertical */
+    linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+  background-size:
+    0.52rem 0.52rem,
+    1.3rem 0.13rem,
+    0.13rem 1.3rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* Hover Desktop */
+.badge.oxford:hover {
+  background: linear-gradient(135deg, #002855 0%, #001533 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.45);
+}
+
+/* ===== FASE B e C: Transições Mobile + Estados Tácteis ===== */
+
+/* Desktop: 0.3s (mantido) */
+@media (min-width: 769px) {
+  .card,
+  .card a,
+  .badge {
+    transition-duration: 0.3s;
+  }
+}
+
+/* Mobile: 0.5s + :active feedback */
+@media (max-width: 768px) {
+  .card,
+  .card a,
+  .badge {
+    transition-duration: 0.5s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Estado ACTIVE (tap/press) */
+  .card:active,
+  .badge:active,
+  .badge.oxford:active {
+    transform: scale(1.02);
+    box-shadow:
+      0 12px 36px rgba(0, 51, 102, 0.6),
+      inset 0 1px 3px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Links em cards recebem feedback tátil */
+  .card a:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+
+  /* Descrições permanecem visíveis mais tempo em mobile */
+  .card__description {
+    transition-duration: 0.5s;
+  }
+
+  /* Hit area mínima (44x44px acessibilidade) */
+  a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
