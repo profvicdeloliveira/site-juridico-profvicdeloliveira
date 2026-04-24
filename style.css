@@ -229,3 +229,99 @@ footer p {
   margin: 0;
   font-size: 0.95rem;
 }
+/* Oxford Academic Badge com símbolo radiação */
+.badge.oxford {
+  background: linear-gradient(135deg, #003366 0%, #001844 100%);
+  position: relative;
+  display: inline-block;
+  border: none;
+}
+
+.badge.oxford::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-image:
+    /* Raios nos 4 eixos cardeais */
+    radial-gradient(ellipse 140% 40% at 50% 0%, rgba(107, 182, 255, 0.6) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 140% at 100% 50%, rgba(107, 182, 255, 0.6) 0%, transparent 65%),
+    radial-gradient(ellipse 140% 40% at 50% 100%, rgba(107, 182, 255, 0.6) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 140% at 0% 50%, rgba(107, 182, 255, 0.6) 0%, transparent 65%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.badge.oxford:hover {
+  box-shadow: 0 0 30px rgba(0, 51, 102, 0.6), 0 6px 16px rgba(65, 105, 225, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Cards temáticos por publicação */
+.card[data-publication="audiencia"] {
+  border-left: 5px solid #B8860B;
+  background-color: rgba(26, 26, 26, 0.02);
+}
+
+.card[data-publication="audiencia"]:hover {
+  background-color: rgba(184, 134, 11, 0.05);
+}
+
+.card[data-publication="mulher"] {
+  border-left: 5px solid #D4A5B0;
+  background-color: rgba(212, 165, 176, 0.04);
+}
+
+.card[data-publication="mulher"]:hover {
+  background-color: #f5e8eb;
+}
+
+.card[data-publication="origem"] {
+  border-left: 5px solid #4169E1;
+  background-color: rgba(65, 105, 225, 0.02);
+}
+
+.card[data-publication="origem"]:hover {
+  background-color: rgba(65, 105, 225, 0.05);
+}
+
+/* Revelação elegante da descrição */
+.card__description {
+  display: none;
+  opacity: 0;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-top: 15px;
+  color: inherit;
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.card:hover .card__description {
+  display: block;
+  opacity: 1;
+}
+
+/* Botões "Acessar" com cores dinâmicas */
+.card[data-publication="audiencia"] a:hover {
+  background-color: #B8860B;
+  color: #ffffff;
+  border-color: #B8860B;
+}
+
+.card[data-publication="mulher"] a:hover {
+  background-color: #7FDB8D;
+  color: #1a1a1a;
+  border-color: #7FDB8D;
+}
+
+.card[data-publication="origem"] a:hover {
+  background-color: #4169E1;
+  color: #ffffff;
+  border-color: #4169E1;
+}
