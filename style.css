@@ -445,3 +445,27 @@ footer p {
     justify-content: center;
   }
 }
+/* SindePol: Ouro Vivo + Preto Petróleo Ultra Luminoso */
+.badge.sindepol {
+  background-color: #0f0f0f;
+  border-color: #0f0f0f;
+  color: #d4a574;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  box-shadow: 0 4px 16px rgba(15, 15, 15, 0.5);
+}
+
+.badge.sindepol:hover {
+  background-color: #1a1a1a;
+  border-color: #d4a574;
+  color: #e6b887;
+  box-shadow: 0 6px 24px rgba(212, 165, 116, 0.3), 0 0 20px rgba(212, 165, 116, 0.15);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .badge.sindepol:active {
+    background-color: #0a0a0a;
+    box-shadow: 0 8px 32px rgba(212, 165, 116, 0.4), inset 0 1px 3px rgba(230, 184, 135, 0.3);
+  }
+}
