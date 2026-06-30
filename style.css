@@ -279,7 +279,88 @@ footer p {
 .card[data-publication="mulher"]:hover {
   background-color: #f5e8eb;
 }
+/* ===== CARD CONICRIPTO 2.0 — SINDEPOL/GO ===== */
+.card[data-publication="conicripto"] {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a1628 0%, #1a3068 50%, #0d1f3c 100%);
+  color: #e8eef5;
+  border-left: 5px solid #4a8ab5;
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+}
 
+.card[data-publication="conicripto"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(106, 154, 197, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(74, 138, 181, 0.12) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
+}
+
+.card[data-publication="conicripto"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card[data-publication="conicripto"] h3 {
+  color: #e8eef5;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  margin-bottom: 8px;
+}
+
+.card[data-publication="conicripto"] .card__meta {
+  color: #8ab4d6;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 15px;
+}
+
+.card[data-publication="conicripto"] .card__description {
+  color: #c8d8e8;
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-top: 12px;
+  display: none;
+}
+
+.card[data-publication="conicripto"]:hover {
+  border-left-color: #7ab0d8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(10, 22, 40, 0.5), 0 0 30px rgba(74, 138, 181, 0.12);
+}
+
+.card[data-publication="conicripto"]:hover .card__description {
+  display: block;
+}
+
+.card[data-publication="conicripto"] a {
+  display: inline-block;
+  padding: 10px 24px;
+  color: #8ab4d6;
+  border: 2px solid #4a8ab5;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.card[data-publication="conicripto"] a:hover {
+  background: linear-gradient(135deg, #4a8ab5, #2a5a8a);
+  color: #ffffff;
+  border-color: #6a9ac5;
+  box-shadow: 0 0 20px rgba(74, 138, 181, 0.4);
+}
 .card[data-publication="origem"] {
   border-left: 5px solid #4169E1;
   background-color: rgba(65, 105, 225, 0.02);
