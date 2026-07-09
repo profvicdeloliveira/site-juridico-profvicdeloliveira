@@ -480,6 +480,10 @@ footer p {
   box-shadow: 0 8px 24px rgba(139, 58, 58, 0.2);
   transform: translateY(-3px);
 }
+
+  .card[data-publication="congresso-goiano"] {
+  flex: 0 1 calc(33.333% - 17px);
+}
 /* ===== FASE A: Oxford Academic Redesign ===== */
 
 /* Badge Oxford: Tipografia + Símbolo Simplificado */
@@ -648,8 +652,5 @@ footer p {
 .card.visible {
   opacity: 1;
   transform: translateY(0);
-}
-  .card[data-publication="congresso-goiano"] {
-  flex: 0 1 calc(33.333% - 17px);
 }
 }
