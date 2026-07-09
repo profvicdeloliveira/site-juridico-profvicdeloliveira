@@ -94,5 +94,25 @@
     <footer>
         <p>&copy; 2026 Dr. Vicente de Oliveira. Todos os direitos reservados.</p>
     </footer>
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+  });
+</script>
 </body>
 </html>
