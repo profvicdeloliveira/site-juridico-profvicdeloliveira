@@ -649,4 +649,7 @@ footer p {
   opacity: 1;
   transform: translateY(0);
 }
+  .card[data-publication="congresso-goiano"] {
+  flex: 0 1 calc(33.333% - 17px);
+}
 }
