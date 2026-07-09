@@ -22,26 +22,28 @@ h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
 header {
-  background: linear-gradient(135deg, #4169E1 0%, #2E4A8A 100%);
-  padding: 80px 20px;
+  background: linear-gradient(180deg, #00d9f6 0%, #0052ff 45%, #0a0f24 100%);
+  padding: 56px 20px;
   text-align: center;
   color: white;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 header h1 {
   color: white;
-  font-size: 3rem;
+  font-size: 2.1rem;
   margin-bottom: 10px;
   letter-spacing: -0.02em;
 }
 
 header p {
   color: white;
-  font-size: 1.2rem;
+  font-size: 0.84rem;
   font-weight: 300;
 }
-
 main {
   max-width: 1200px;
   margin: 0 auto;
@@ -636,4 +638,15 @@ footer p {
       inset 0 1px 3px rgba(240, 216, 96, 0.4);
     transform: scale(1.02);
   }
+  /* Fade-in elegante para cards */
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 }
