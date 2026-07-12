@@ -1,413 +1,310 @@
-<!--
-  ============================================================
-  APLICAÇÃO
-  1. Salve este arquivo como index.html (ou substitua o HTML atual).
-  2. Cole o conteúdo integral no ponto desejado do site.
-  3. O CSS está embutido em <style>; para externalizar, mova o bloco
-     para styles.css e adicione <link rel="stylesheet" href="styles.css">.
-  4. Para adicionar referências, duplique um bloco .ref-card dentro
-     da tier correspondente (.tier-1, .tier-2, .tier-3).
-  5. Para publicações/eventos, duplique .pub-card mantendo ordem
-     cronológica reversa (mais recente primeiro).
-  ============================================================
--->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Vicente de Oliveira — Pesquisador em Direito Penal, Segurança Pública e Direitos Humanos</title>
-<style>
-  :root{
-    --bg:#e8ecf3;
-    --bg-soft:#dfe4ee;
-    --surface:#eef2f8;
-    --text:#2b3550;
-    --muted:#6b7794;
-    --cobalt:#1b3a8b;
-    --cobalt-soft:#2f5bc7;
-    --accent:#7c5cff;
-    --tier1:#1b3a8b;
-    --tier2:#0f8a6a;
-    --tier3:#b5651d;
-    --shadow-dark:#c3c9d6;
-    --shadow-light:#ffffff;
-    --radius:18px;
-    --radius-sm:12px;
-    --ease:0.3s ease;
-  }
-
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Segoe UI',Inter,system-ui,-apple-system,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    padding:40px 20px;
-    min-height:100vh;
-  }
-
-  .wrap{max-width:1100px;margin:0 auto}
-
-  /* ===== NEUMORPHISM BASE ===== */
-  .neu{
-    background:var(--surface);
-    border-radius:var(--radius);
-    box-shadow:8px 8px 18px var(--shadow-dark), -8px -8px 18px var(--shadow-light);
-    transition:transform var(--ease), box-shadow var(--ease);
-  }
-  .neu-inset{
-    background:var(--surface);
-    border-radius:var(--radius-sm);
-    box-shadow:inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
-  }
-
-  /* ===== HEADER ===== */
-  header.neu{
-    padding:48px 40px;
-    margin-bottom:48px;
-    text-align:center;
-    background:linear-gradient(145deg,var(--cobalt),var(--cobalt-soft));
-    box-shadow:10px 10px 24px var(--shadow-dark), -10px -10px 24px var(--shadow-light);
-    color:#fff;
-  }
-  header h1{
-    font-size:clamp(2rem,5vw,3.4rem);
-    font-weight:800;
-    letter-spacing:-1px;
-    margin-bottom:10px;
-    text-shadow:0 4px 14px rgba(0,0,0,.25);
-  }
-  header .tagline{
-    font-size:1.05rem;
-    opacity:.92;
-    font-weight:300;
-    letter-spacing:.3px;
-  }
-
-  /* ===== SECTIONS ===== */
-  section{margin-bottom:56px}
-  h2{
-    font-size:1.6rem;
-    color:var(--cobalt);
-    margin-bottom:24px;
-    padding-left:14px;
-    border-left:5px solid var(--accent);
-    font-weight:700;
-  }
-  h3{
-    font-size:1.1rem;
-    margin-bottom:14px;
-    font-weight:600;
-  }
-  .tier-title{display:flex;align-items:center;gap:10px;margin:28px 0 16px}
-  .tier-title.t1{color:var(--tier1)}
-  .tier-title.t2{color:var(--tier2)}
-  .tier-title.t3{color:var(--tier3)}
-  .tier-title .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
-  .t1 .dot{background:var(--tier1)}
-  .t2 .dot{background:var(--tier2)}
-  .t3 .dot{background:var(--tier3)}
-
-  /* ===== GRID ===== */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
-
-  /* ===== REF CARDS ===== */
-  .ref-card{
-    padding:24px;
-    display:flex;flex-direction:column;gap:12px;
-    position:relative;overflow:hidden;
-  }
-  .ref-card::before{
-    content:"";position:absolute;inset:0;border-radius:var(--radius);
-    background:linear-gradient(145deg,rgba(255,255,255,.4),transparent 40%);
-    pointer-events:none;opacity:.6;
-  }
-  .ref-card:hover{
-    transform:translateY(-6px) scale(1.02);
-    box-shadow:14px 14px 28px var(--shadow-dark), -14px -14px 28px var(--shadow-light);
-  }
-  .ref-head{display:flex;align-items:center;gap:12px}
-  .ref-icon{
-    width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
-    font-size:1.4rem;background:var(--bg-soft);
-    box-shadow:inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
-  }
-  .ref-name{font-size:1.15rem;font-weight:700;letter-spacing:.3px}
-  .tier-1 .ref-name{color:var(--tier1)}
-  .tier-2 .ref-name{color:var(--tier2)}
-  .tier-3 .ref-name{color:var(--tier3)}
-  .ref-desc{color:var(--muted);font-size:.92rem;min-height:38px}
-  .ref-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
-
-  .badge{
-    font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
-    padding:6px 12px;border-radius:20px;color:#fff;
-    box-shadow:3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
-  }
-  .badge.b1{background:linear-gradient(145deg,var(--tier1),var(--cobalt-soft))}
-  .badge.b2{background:linear-gradient(145deg,var(--tier2),#16b894)}
-  .badge.b3{background:linear-gradient(145deg,var(--tier3),#d98a3d)}
-
-  .access{
-    text-decoration:none;font-weight:600;font-size:.9rem;color:var(--cobalt);
-    padding:8px 16px;border-radius:12px;background:var(--surface);
-    box-shadow:4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
-    transition:transform var(--ease), box-shadow var(--ease), color var(--ease);
-    display:inline-flex;align-items:center;gap:6px;
-  }
-  .access:hover{
-    transform:translateY(-2px);
-    box-shadow:inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-    color:var(--accent);
-  }
-  .access .arrow{transition:transform var(--ease)}
-  .access:hover .arrow{transform:translateX(4px)}
-
-  /* ===== PUBLICATIONS ===== */
-  .pub-card{padding:22px 24px;display:flex;flex-direction:column;gap:8px}
-  .pub-card:hover{transform:translateY(-4px);box-shadow:12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light)}
-  .pub-date{
-    font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
-    color:var(--accent);padding:4px 10px;border-radius:8px;width:fit-content;
-    box-shadow:inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-  }
-  .pub-title{font-size:1.1rem;font-weight:700;color:var(--cobalt)}
-  .pub-desc{color:var(--muted);font-size:.92rem}
-  .pub-desc a{color:var(--cobalt-soft);text-decoration:none;font-weight:600}
-  .pub-desc a:hover{color:var(--accent);text-decoration:underline}
-
-  /* ===== CONTACTS ===== */
-  .contact-card{padding:28px;text-align:center}
-  .contact-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:14px}
-  .contact-list a{
-    text-decoration:none;color:var(--cobalt);font-weight:600;
-    padding:12px 18px;border-radius:12px;display:block;background:var(--surface);
-    box-shadow:5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-    transition:transform var(--ease), box-shadow var(--ease), color var(--ease);
-  }
-  .contact-list a:hover{
-    transform:translateY(-3px);color:var(--accent);
-    box-shadow:inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
-  }
-
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:40px;padding:20px}
-
-  @media (max-width:640px){
-    body{padding:20px 12px}
-    header.neu{padding:32px 20px}
-    .grid{grid-template-columns:1fr}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio acadêmico de Dr. Vicente de Oliveira: publicações, eventos, referências científicas e contatos nas áreas de Direitos Humanos, Segurança Pública e Investigação Policial.">
+  <meta name="author" content="Dr. Vicente de Oliveira">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Dr. Vicente de Oliveira — Portfólio Acadêmico">
+  <meta property="og:description" content="Publicações, eventos e referências acadêmicas de Dr. Vicente de Oliveira nas áreas de Direitos Humanos e Segurança Pública.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Portfólio Acadêmico — Dr. Vicente de Oliveira">
+  <meta property="og:url" content="https://profvicdeloliveira.github.io">
+  <meta name="theme-color" content="#1a2238">
+  <title>Dr. Vicente de Oliveira — Portfólio Acadêmico</title>
 </head>
-<body>
-<div class="wrap">
+<body data-theme="academico">
 
-  <!-- HEADER -->
-  <header class="neu">
-    <h1>Dr. Vicente de Oliveira</h1>
-    <p class="tagline">Delegado de Polícia Civil &middot; Pesquisador em Direito Penal, Organizações Criminosas, Segurança Pública e Direitos Humanos</p>
+  <a class="skip-link" href="#main-conteudo">Pular para o conteúdo principal</a>
+
+  <header class="cabecalho" role="banner">
+    <div class="cabecalho__container">
+      <h1 class="cabecalho__titulo">Dr. Vicente de Oliveira</h1>
+      <p class="cabecalho__tagline">Pesquisador em Direitos Humanos, Segurança Pública e Investigação Policial</p>
+    </div>
+    <nav class="navegacao" aria-label="Navegação principal">
+      <ul class="navegacao__lista">
+        <li><a href="#referencias">Referências</a></li>
+        <li><a href="#publicacoes">Publicações</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#contatos">Contatos</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- REFERÊNCIAS ACADÊMICAS -->
-  <section>
-    <h2>Referências Acadêmicas</h2>
+  <main id="main-conteudo" class="conteudo" role="main">
 
-    <h3 class="tier-title t1"><span class="dot"></span>Tier 1 — Alta credibilidade</h3>
-    <div class="grid tier-1">
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">🎓</div>
-          <div class="ref-name">Oxford Academic</div>
-        </div>
-        <p class="ref-desc">Peer-review máximo — Indexação ISI.</p>
-        <div class="ref-foot">
-          <span class="badge b1">Tier 1</span>
-          <a class="access" href="https://academic.oup.com" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
+    <!-- Referências Acadêmicas -->
+    <section id="referencias" class="secao secao--referencias" aria-labelledby="referencias-titulo">
+      <header class="secao__cabecalho">
+        <h2 id="referencias-titulo" class="secao__titulo">Referências Acadêmicas</h2>
+        <p class="secao__descricao">Plataformas e repositórios consultados, organizados por nível de credibilidade acadêmica.</p>
+      </header>
 
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">📚</div>
-          <div class="ref-name">JSTOR</div>
-        </div>
-        <p class="ref-desc">Acervo consolidado de periódicos e livros — acesso autenticado.</p>
-        <div class="ref-foot">
-          <span class="badge b1">Tier 1</span>
-          <a class="access" href="https://www.jstor.org/stable/597322?googleloggedin=true" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
+      <section class="referencia-grupo" data-tier="1" aria-labelledby="tier-1-titulo">
+        <h3 id="tier-1-titulo" class="referencia-grupo__titulo">Tier 1 — Alta credibilidade</h3>
+        <ul class="referencia-lista">
+          <li>
+            <a href="https://academic.oup.com" target="_blank" rel="noopener noreferrer">Oxford Academic</a>
+          </li>
+          <li>
+            <a href="https://www.jstor.org" target="_blank" rel="noopener noreferrer">JSTOR</a>
+          </li>
+          <li>
+            <a href="https://archive.org" target="_blank" rel="noopener noreferrer">Internet Archive</a>
+          </li>
+        </ul>
+      </section>
 
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">🌐</div>
-          <div class="ref-name">Internet Archive</div>
-        </div>
-        <p class="ref-desc">Preservação digital universal de fontes.</p>
-        <div class="ref-foot">
-          <span class="badge b1">Tier 1</span>
-          <a class="access" href="https://archive.org" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
+      <section class="referencia-grupo" data-tier="2" aria-labelledby="tier-2-titulo">
+        <h3 id="tier-2-titulo" class="referencia-grupo__titulo">Tier 2 — Credibilidade intermediária</h3>
+        <ul class="referencia-lista">
+          <li>
+            <a href="https://zenodo.org" target="_blank" rel="noopener noreferrer">Zenodo</a>
+          </li>
+          <li>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </li>
+          <li>
+            <a href="https://www.aup.nl" target="_blank" rel="noopener noreferrer">Amsterdam University Press</a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="referencia-grupo" data-tier="3" aria-labelledby="tier-3-titulo">
+        <h3 id="tier-3-titulo" class="referencia-grupo__titulo">Tier 3 — Identidade e redes acadêmicas</h3>
+        <ul class="referencia-lista">
+          <li>
+            <a href="https://orcid.org" target="_blank" rel="noopener noreferrer">ORCID</a>
+          </li>
+          <li>
+            <a href="http://lattes.cnpq.br" target="_blank" rel="noopener noreferrer">Lattes</a>
+          </li>
+          <li>
+            <a href="https://www.sindepol.com.br" target="_blank" rel="noopener noreferrer">SindePol</a>
+          </li>
+          <li>
+            <a href="https://www.academia.edu" target="_blank" rel="noopener noreferrer">Academia.edu</a>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- Publicações -->
+    <section id="publicacoes" class="secao secao--publicacoes" aria-labelledby="publicacoes-titulo">
+      <header class="secao__cabecalho">
+        <h2 id="publicacoes-titulo" class="secao__titulo">Publicações</h2>
+        <p class="secao__descricao">Produção acadêmica em ordem cronológica reversa.</p>
+      </header>
+
+      <div class="cards" data-layout="publicacoes">
+
+        <article class="card card--publicacao" data-tipo="artigo" data-ano="2025">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">Audiência de Custódia desmistificada: influxos e contrafluxos na Investigação Policial à luz dos Direitos Humanos</h3>
+            <p class="card__meta">
+              <time datetime="2025-10">out. 2025</time> · SindePol + Zenodo
+            </p>
+          </header>
+          <div class="card__corpo">
+            <p class="card__resumo">Análise dos impactos da audiência de custódia sobre a investigação policial, sob a perspectiva dos Direitos Humanos.</p>
+          </div>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://doi.org/10.5281/zenodo.19603643" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🔗</span>
+              <span class="card__link-texto">DOI: 10.5281/zenodo.19603643</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--publicacao" data-tipo="artigo" data-ano="2026">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">A Dignidade Humana da Mulher como Stress Test Civilizatório</h3>
+            <p class="card__meta">
+              <time datetime="2026-04-13">13 abr. 2026</time> · Zenodo
+            </p>
+          </header>
+          <div class="card__corpo">
+            <p class="card__resumo">Reflexão sobre a dignidade da mulher como indicador civilizatório e teste de resistência das sociedades contemporâneas.</p>
+          </div>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://doi.org/10.5281/zenodo.19795923" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🔗</span>
+              <span class="card__link-texto">DOI: 10.5281/zenodo.19795923</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--publicacao" data-tipo="artigo" data-ano="2026">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">A Dignidade da Pessoa Humana: Do Embrião Civilizatório</h3>
+            <p class="card__meta">
+              <time datetime="2026-03-14">14 mar. 2026</time> · Zenodo
+            </p>
+          </header>
+          <div class="card__corpo">
+            <p class="card__resumo">Estudo sobre a dignidade da pessoa humana enquanto fundamento ético e jurídico da civilização.</p>
+          </div>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://doi.org/10.5281/zenodo.19750568" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🔗</span>
+              <span class="card__link-texto">DOI: 10.5281/zenodo.19750568</span>
+            </a>
+          </footer>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Eventos -->
+    <section id="eventos" class="secao secao--eventos" aria-labelledby="eventos-titulo">
+      <header class="secao__cabecalho">
+        <h2 id="eventos-titulo" class="secao__titulo">Eventos</h2>
+        <p class="secao__descricao">Participações em congressos, seminários e comissões, em ordem cronológica reversa.</p>
+      </header>
+
+      <div class="cards" data-layout="eventos">
+
+        <article class="card card--evento" data-tipo="congresso" data-ano="2026">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">3º Congresso Goiano de Segurança Pública e Direitos Humanos</h3>
+            <p class="card__meta">
+              <time datetime="2026-09-09">9–11 set. 2026</time> · ESPC, Goiânia · <span class="card__escopo">Nacional</span>
+            </p>
+          </header>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://www.sympla.com.br/evento/3-congresso-goiano-de-seguranca-publica-e-direitos-humanos/3433273" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🎟️</span>
+              <span class="card__link-texto">Página do evento</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--evento" data-tipo="congresso" data-ano="2026">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">CONICRIPTO 2.0</h3>
+            <p class="card__meta">
+              <time datetime="2026-06-25">25–28 jun. 2026</time> · Resort Quinta Santa Bárbara, Pirenópolis (GO)
+            </p>
+          </header>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://congressosindepol.com.br" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🎟️</span>
+              <span class="card__link-texto">Página do evento</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--evento" data-tipo="seminario" data-ano="2026">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">Seminário Nacional Antifacção</h3>
+            <p class="card__meta">
+              <time datetime="2026-05-15">15 mai. 2026</time> · ESA/OAB-GO, Goiânia
+            </p>
+          </header>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://www.sindepol.com.br/seminario-nacional-antifaccao/" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🎟️</span>
+              <span class="card__link-texto">Página do evento</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--evento" data-tipo="congresso" data-ano="2025">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">1º CONICRIPTO</h3>
+            <p class="card__meta">
+              <time datetime="2025-11-06">6–9 nov. 2025</time> · Tauá Resort, Alexânia (GO)
+            </p>
+          </header>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://congressosindepol.com.br/2025/" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🎟️</span>
+              <span class="card__link-texto">Página do evento</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--evento" data-tipo="congresso" data-ano="2025">
+          <header class="card__cabecalho">
+            <h3 class="card__titulo">II Congresso Goiano de Segurança Pública e Direitos Humanos</h3>
+            <p class="card__meta">
+              <time datetime="2025-09-24">24–26 set. 2025</time> · ESPC/GO, Goiânia
+            </p>
+          </header>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://www.appego.com.br/blog/eventos/ii-congresso-goiano-de-seguranca-publica-e-direitos-humanos-de24-a-26-de-setembro-de-2025/" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🎟️</span>
+              <span class="card__link-texto">Página do evento</span>
+            </a>
+          </footer>
+        </article>
+
+        <article class="card card--evento card--destaque" data-tipo="cpi" data-ano="2015" data-destaque="moderado">
+          <header class="card__cabecalho">
+            <p class="card__selo" role="status">
+              <span aria-hidden="true">⭐</span>
+              <span class="card__selo-texto">Atuação institucional destacada</span>
+            </p>
+            <h3 class="card__titulo">CPI da Violação de Direitos da Criança e do Adolescente</h3>
+            <p class="card__meta">
+              <time datetime="2015-05-27">27 mai. 2015</time> – <time datetime="2016-05">mai. 2016</time> · Assembleia Legislativa de Goiás
+            </p>
+          </header>
+          <div class="card__corpo">
+            <p class="card__resumo">Representante da Polícia Civil e Consultor na Comissão Parlamentar de Inquérito dedicada às violações de direitos da criança e do adolescente.</p>
+          </div>
+          <footer class="card__rodape">
+            <a class="card__link" href="https://portal.al.go.leg.br/noticias/72073/cpi" target="_blank" rel="noopener noreferrer">
+              <span aria-hidden="true">🏛️</span>
+              <span class="card__link-texto">Notícia oficial da CPI</span>
+            </a>
+          </footer>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Contatos -->
+    <section id="contatos" class="secao secao--contatos" aria-labelledby="contatos-titulo">
+      <header class="secao__cabecalho">
+        <h2 id="contatos-titulo" class="secao__titulo">Contatos</h2>
+        <p class="secao__descricao">Canais acadêmicos e profissionais para correspondência.</p>
+      </header>
+
+      <address class="contatos">
+        <ul class="contatos__lista">
+          <li class="contato" data-canal="email">
+            <span class="contato__icone" aria-hidden="true">✉️</span>
+            <a class="contato__link" href="mailto:profvicdeloliveira@gmail.com">profvicdeloliveira@gmail.com</a>
+          </li>
+          <li class="contato" data-canal="orcid">
+            <span class="contato__icone" aria-hidden="true">🆔</span>
+            <a class="contato__link" href="https://orcid.org/0009-0006-4436-0915" target="_blank" rel="noopener noreferrer">ORCID: 0009-0006-4436-0915</a>
+          </li>
+          <li class="contato" data-canal="academia">
+            <span class="contato__icone" aria-hidden="true">📚</span>
+            <a class="contato__link" href="https://independent.academia.edu/VicentedePauloSilvaeOliveira" target="_blank" rel="noopener noreferrer">Academia.edu — Vicente de Paulo Silva e Oliveira</a>
+          </li>
+          <li class="contato" data-canal="github">
+            <span class="contato__icone" aria-hidden="true">💻</span>
+            <a class="contato__link" href="https://github.com/profvicdeloliveira" target="_blank" rel="noopener noreferrer">GitHub — profvicdeloliveira</a>
+          </li>
+        </ul>
+      </address>
+    </section>
+
+  </main>
+
+  <footer class="rodape" role="contentinfo">
+    <div class="rodape__container">
+      <p class="rodape__texto">
+        © <time datetime="2026">2026</time> Dr. Vicente de Oliveira. Portfólio acadêmico.
+      </p>
+      <p class="rodape__nota">Conteúdo semântico em HTML5, acessível e responsivo (WCAG 2.1 AA).</p>
     </div>
+  </footer>
 
-    <h3 class="tier-title t2"><span class="dot"></span>Tier 2 — Credibilidade consolidada</h3>
-    <div class="grid tier-2">
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">🔬</div>
-          <div class="ref-name">Zenodo</div>
-        </div>
-        <p class="ref-desc">Open science CERN — repositório aberto com DOIs persistentes.</p>
-        <div class="ref-foot">
-          <span class="badge b2">Tier 2</span>
-          <a class="access" href="https://zenodo.org/records/19795923" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">⚙️</div>
-          <div class="ref-name">GitHub</div>
-        </div>
-        <p class="ref-desc">Repositório pessoal — imutabilidade e versionamento de projetos.</p>
-        <div class="ref-foot">
-          <span class="badge b2">Tier 2</span>
-          <a class="access" href="https://github.com/profvicdeloliveira" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">📖</div>
-          <div class="ref-name">Amsterdam University Press</div>
-        </div>
-        <p class="ref-desc">Editora acadêmica europeia de referência.</p>
-        <div class="ref-foot">
-          <span class="badge b2">Tier 2</span>
-          <a class="access" href="https://www.aup.nl" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-    </div>
-
-    <h3 class="tier-title t3"><span class="dot"></span>Tier 3 — Identidade e rede acadêmica</h3>
-    <div class="grid tier-3">
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">🆔</div>
-          <div class="ref-name">ORCID</div>
-        </div>
-        <p class="ref-desc">Identificador persistente de pessoa pesquisadora.</p>
-        <div class="ref-foot">
-          <span class="badge b3">Tier 3</span>
-          <a class="access" href="https://orcid.org/0009-0006-4436-0915" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">🏫</div>
-          <div class="ref-name">Lattes</div>
-        </div>
-        <p class="ref-desc">Currículo acadêmico brasileiro oficial.</p>
-        <div class="ref-foot">
-          <span class="badge b3">Tier 3</span>
-          <a class="access" href="http://lattes.cnpq.br" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">🛡️</div>
-          <div class="ref-name">SindePol</div>
-        </div>
-        <p class="ref-desc">Credencial institucional sindical/policial — artigos e publicações.</p>
-        <div class="ref-foot">
-          <span class="badge b3">Tier 3</span>
-          <a class="access" href="https://www.sindepol.com.br" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-
-      <article class="neu ref-card">
-        <div class="ref-head">
-          <div class="ref-icon">👥</div>
-          <div class="ref-name">Academia.edu</div>
-        </div>
-        <p class="ref-desc">Rede social acadêmica — perfil e produções compartilhadas.</p>
-        <div class="ref-foot">
-          <span class="badge b3">Tier 3</span>
-          <a class="access" href="https://independent.academia.edu/VicentedePauloSilvaeOliveira" target="_blank" rel="noopener">Acessar <span class="arrow">→</span></a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- PUBLICAÇÕES / EVENTOS -->
-  <section>
-    <h2>Publicações &amp; Eventos</h2>
-    <div class="grid">
-      <article class="neu pub-card">
-        <span class="pub-date">Setembro 2026</span>
-        <h3 class="pub-title">3º Congresso Goiano de Segurança Pública e Direitos Humanos</h3>
-        <p class="pub-desc">Participação como palestrante e pesquisador. Inscrições e programação: <a href="https://www.sympla.com.br/evento/3-congresso-goiano-de-seguranca-publica-e-direitos-humanos/3433273" target="_blank" rel="noopener">Sympla</a>.</p>
-      </article>
-
-      <article class="neu pub-card">
-        <span class="pub-date">Junho 2026</span>
-        <h3 class="pub-title">CONICRIPTO 2.0</h3>
-        <p class="pub-desc">Congresso integrado de ciências policiais e segurança pública. Realização: <a href="https://www.sindepol.com.br" target="_blank" rel="noopener">SindePol</a> · <a href="https://www.instagram.com/prof_adrianocosta/" target="_blank" rel="noopener">Prof. Adriano Costa</a>.</p>
-      </article>
-
-      <article class="neu pub-card">
-        <span class="pub-date">Maio 2026</span>
-        <h3 class="pub-title">Seminário Nacional Antifacção</h3>
-        <p class="pub-desc">Debates sobre organizações criminosas e segurança pública. Palestrantes: Dr. Adriano Costa, Dr. Rodolfo Laterza e Dra. Placidina Pires.</p>
-      </article>
-
-      <article class="neu pub-card">
-        <span class="pub-date">Abril 2026</span>
-        <h3 class="pub-title">A Dignidade Humana da Mulher</h3>
-        <p class="pub-desc">Publicação acadêmica depositada no Zenodo. DOI: 10.5281/zenodo.19795923 — <a href="https://zenodo.org/records/19795923" target="_blank" rel="noopener">Acessar registro</a>.</p>
-      </article>
-
-      <article class="neu pub-card">
-        <span class="pub-date">Abril 2026</span>
-        <h3 class="pub-title">Audiência de Custódia Desmistificada</h3>
-        <p class="pub-desc">Publicação acadêmica depositada no Zenodo. DOI: 10.5281/zenodo.19603643 — <a href="https://zenodo.org/records/19603643" target="_blank" rel="noopener">Acessar registro</a>.</p>
-      </article>
-
-      <article class="neu pub-card">
-        <span class="pub-date">Março 2026</span>
-        <h3 class="pub-title">A Dignidade da Pessoa Humana</h3>
-        <p class="pub-desc">Publicação acadêmica depositada no Zenodo. DOI: 10.5281/zenodo.19750568 — <a href="https://zenodo.org/records/19750568" target="_blank" rel="noopener">Acessar registro</a>.</p>
-      </article>
-
-      <article class="neu pub-card">
-        <span class="pub-date">Outubro 2025</span>
-        <h3 class="pub-title">Audiência de Custódia Desmistificada — SindePol</h3>
-        <p class="pub-desc">Artigo publicado no portal SindePol. Disponível em: <a href="https://www.sindepol.com.br/artigos/" target="_blank" rel="noopener">SindePol — Artigos</a>.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- CONTATOS -->
-  <section>
-    <h2>Contatos</h2>
-    <div class="neu contact-card">
-      <h3 style="color:var(--cobalt)">Vamos conversar</h3>
-      <p style="color:var(--muted);font-size:.92rem">Disponível para colaborações acadêmicas, consultoria e palestras.</p>
-      <ul class="contact-list">
-        <li><a href="mailto:profvicdeloliveira@gmail.com">✉️ profvicdeloliveira@gmail.com</a></li>
-        <li><a href="https://orcid.org/0009-0006-4436-0915" target="_blank" rel="noopener">🆔 ORCID 0009-0006-4436-0915</a></li>
-        <li><a href="https://independent.academia.edu/VicentedePauloSilvaeOliveira" target="_blank" rel="noopener">👥 Academia.edu — Vicente de Oliveira</a></li>
-        <li><a href="https://github.com/profvicdeloliveira" target="_blank" rel="noopener">⚙️ GitHub — profvicdeloliveira</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>© 2026 — Dr. Vicente de Oliveira · Delegado de Polícia Civil · Pesquisador em Direito Penal, Segurança Pública e Direitos Humanos.</footer>
-</div>
 </body>
 </html>
