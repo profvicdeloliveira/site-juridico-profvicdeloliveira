@@ -16,6 +16,11 @@
   --cor-tier-1: #1b4965;
   --cor-tier-2: #2a9d8f;
   --cor-tier-3: #e76f51;
+  --cor-tier-4: #00549a;
+  --cor-tier-4-suave: #eef4fa;
+  --cor-inst-espc: #00549a;
+  --cor-inst-ufcat: #1a5276;
+  --cor-inst-ufcat-acento: #e67e22;
 
   --cor-ano-2025: #eef4f8;
   --cor-ano-2026: #e8f5f3;
@@ -315,7 +320,36 @@ section#contatos > h2 {
 .tier[data-tipo="tier-3"] a:hover {
   border-color: var(--cor-tier-3);
 }
+/* ---------- Badge ESPC ---------- */
+.tier[data-tipo="tier-4"] a[href*="policiacivil"] .inst-sigla,
+.tier[data-tipo="tier-4"] a[href*="espc"] .inst-sigla {
+  background-color: var(--cor-inst-espc);
+}
 
+.tier[data-tipo="tier-4"] a[href*="policiacivil"]:hover,
+.tier[data-tipo="tier-4"] a[href*="espc"]:hover {
+  border-color: var(--cor-inst-espc);
+  box-shadow: 0 4px 16px rgba(0, 84, 154, 0.15);
+}
+
+.tier[data-tipo="tier-4"] a[href*="policiacivil"]:hover .inst-sigla,
+.tier[data-tipo="tier-4"] a[href*="espc"]:hover .inst-sigla {
+  background-color: #003d6e;
+}
+
+/* ---------- Badge UFCAT ---------- */
+.tier[data-tipo="tier-4"] a[href*="ufcat"] .inst-sigla {
+  background: linear-gradient(135deg, var(--cor-inst-ufcat) 0%, var(--cor-inst-ufcat-acento) 100%);
+}
+
+.tier[data-tipo="tier-4"] a[href*="ufcat"]:hover {
+  border-color: var(--cor-inst-ufcat);
+  box-shadow: 0 4px 16px rgba(26, 82, 118, 0.15);
+}
+
+.tier[data-tipo="tier-4"] a[href*="ufcat"]:hover .inst-sigla {
+  background: linear-gradient(135deg, #14485f 0%, #c46d18 100%);
+}
 /* ---------- Tier 4 — Instituições de Ensino ---------- */
 .tier[data-tipo="tier-4"] {
   border-left-color: var(--cor-tier-4);
@@ -330,6 +364,7 @@ section#contatos > h2 {
   border-color: var(--cor-tier-4);
   box-shadow: 0 4px 16px rgba(0, 84, 154, 0.15);
 }
+
 /* ---------- PUBLICAÇÕES ---------- */
 section#publicacoes ol {
   list-style: none;
@@ -562,6 +597,9 @@ footer#rodape a:hover {
 
 /* ---------- TABLET (768px) ---------- */
 @media (max-width: 768px) {
+     .tier ul {
+    grid-template-columns: 1fr;
+  }
   header#cabecalho {
     padding: 2rem 1rem 1.5rem;
   }
@@ -622,6 +660,23 @@ footer#rodape a:hover {
 @media (max-width: 480px) {
   body {
     font-size: 15px;
+       .tier a {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.88rem;
+  }
+  
+  .tier a .inst-sigla {
+    font-size: 0.72rem;
+    padding: 0.1rem 0.4rem;
+  }
+  
+  .tier a .inst-nome {
+    font-size: 0.85rem;
+  }
+  
+  .tier a::after {
+    font-size: 0.78rem;
+  }
   }
 
   header#cabecalho {
