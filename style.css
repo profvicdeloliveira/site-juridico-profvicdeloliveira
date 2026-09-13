@@ -29,6 +29,17 @@
   --cor-sindepol-suave: #eef2f7;
   --cor-anais: #00549a;
   --cor-anais-suave: #eef4fa;
+  --cor-alego: #b8860b;
+  --cor-alego-suave: #fff8e7;
+  --cor-orcid: #a6ce39;
+  --cor-orcid-suave: #f1f8e9;
+  --cor-academia: #41454a;
+  --cor-academia-suave: #eceef0;
+  --cor-github: #24292e;
+  --cor-github-suave: #ebedef;
+  --cor-email: #1b4965;
+  --cor-email-suave: #eef4f8;
+  --sombra: 0 2px 8px rgba(31, 41, 51, 0.08); 
 
   --sombra: 0 2px 8px rgba(31, 41, 51, 0.08);
   --sombra-hover: 0 4px 16px rgba(31, 41, 51, 0.12);
