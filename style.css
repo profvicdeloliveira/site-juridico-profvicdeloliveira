@@ -25,6 +25,10 @@
   --cor-ano-2025: #eef4f8;
   --cor-ano-2026: #e8f5f3;
   --cor-destaque: #fff4e6;
+  --cor-sindepol: #1b3866;
+  --cor-sindepol-suave: #eef2f7;
+  --cor-anais: #00549a;
+  --cor-anais-suave: #eef4fa;
 
   --sombra: 0 2px 8px rgba(31, 41, 51, 0.08);
   --sombra-hover: 0 4px 16px rgba(31, 41, 51, 0.12);
@@ -408,26 +412,111 @@ section#publicacoes ol {
   font-size: 1.1rem;
   color: var(--cor-texto);
   margin-bottom: 0.4rem;
+  line-height: 1.35;
 }
 
-.publicacao .meta,
+.publicacao h3 .subtitulo-pub {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--cor-texto-suave);
+  font-style: italic;
+  margin-top: 0.15rem;
+}
+
+.publicacao .meta {
+  color: var(--cor-texto-suave);
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.01em;
+}
+
 .publicacao p {
   color: var(--cor-texto-suave);
   font-size: 0.92rem;
   margin-bottom: 0.4rem;
 }
 
-.publicacao a[href*="doi"],
-.publicacao a[href*="10."] {
-  color: var(--cor-acento);
-  text-decoration: none;
-  font-weight: 600;
-  word-break: break-word;
+/* ---------- LINKS DE PUBLICAÇÃO (pílulas) ---------- */
+.links-publicacao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
-.publicacao a[href*="doi"]:hover,
-.publicacao a[href*="10."]:hover {
-  text-decoration: underline;
+.link-pub {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid;
+  transition: background-color var(--transicao),
+              color var(--transicao),
+              box-shadow var(--transicao),
+              transform var(--transicao);
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.link-pub::after {
+  content: "↗";
+  font-size: 0.72rem;
+  opacity: 0.55;
+  transition: opacity var(--transicao), transform var(--transicao);
+}
+
+.link-pub:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.link-pub:hover::after {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+.link-pub:focus-visible {
+  outline: 3px solid var(--cor-acento);
+  outline-offset: 2px;
+}
+
+/* Variante SindePol */
+.link-sindepol {
+  background-color: var(--cor-sindepol-suave);
+  border-color: var(--cor-sindepol);
+  color: var(--cor-sindepol);
+}
+.link-sindepol:hover {
+  background-color: var(--cor-sindepol);
+  color: #ffffff;
+}
+
+/* Variante Anais / Congresso */
+.link-anais {
+  background-color: var(--cor-anais-suave);
+  border-color: var(--cor-anais);
+  color: var(--cor-anais);
+}
+.link-anais:hover {
+  background-color: var(--cor-anais);
+  color: #ffffff;
+}
+
+/* Variante DOI / Zenodo */
+.link-doi {
+  background-color: var(--cor-ano-2026);
+  border-color: var(--cor-acento);
+  color: var(--cor-acento);
+}
+.link-doi:hover {
+  background-color: var(--cor-acento);
+  color: #ffffff;
 }
 
 /* Ano 2025 */
@@ -603,6 +692,10 @@ footer#rodape a:hover {
   header#cabecalho {
     padding: 2rem 1rem 1.5rem;
   }
+     .link-pub {
+    font-size: 0.74rem;
+    padding: 0.35rem 0.7rem;
+  }
 
   header#cabecalho h1 {
     font-size: 1.6rem;
@@ -676,6 +769,17 @@ footer#rodape a:hover {
   
   .tier a::after {
     font-size: 0.78rem;
+  }
+       .links-publicacao {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .link-pub {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.75rem;
+    justify-content: center;
+    text-align: center;
   }
   }
 
