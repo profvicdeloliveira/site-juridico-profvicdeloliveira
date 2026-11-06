@@ -1,55 +1,36 @@
-/* =============================================================
-   CSS3 COMPLETO E CORRIGIDO
-   Estrutura: header#cabecalho, nav#navegacao, sections, footer#rodape
-   Paleta cromática preservada | Responsivo | Acessível
-   ============================================================= */
+/* ==========================================================================
+   MATRIZ CROMÁTICA E TIPOGRÁFICA — PADRÃO EDITORIAL SSRN / ELSEVIER
+   Portfólio Acadêmico: Prof. Vicente de Oliveira
+   ========================================================================== */
 
-/* ---------- VARIÁVEIS ---------- */
 :root {
-  --cor-fundo: #f7f8fa;
-  --cor-surface: #ffffff;
-  --cor-texto: #1f2933;
-  --cor-texto-suave: #52606d;
-  --cor-primaria: #1b4965;
-  --cor-acento: #2a9d8f;
-  --cor-tier-1: #1b4965;
-  --cor-tier-2: #2a9d8f;
-  --cor-tier-3: #e76f51;
-  --cor-tier-4: #00549a;
-  --cor-tier-4-suave: #eef4fa;
-  --cor-inst-espc: #00549a;
-  --cor-inst-ufcat: #1a5276;
-  --cor-inst-ufcat-acento: #e67e22;
-  --cor-ufcat: #1a5276;
-  --cor-ufcat-suave: #eef4f8;
-  --cor-ano-2025: #eef4f8;
-  --cor-ano-2026: #e8f5f3;
-  --cor-destaque: #fff4e6;
-  --cor-sindepol: #1b3866;
-  --cor-sindepol-suave: #eef2f7;
-  --cor-anais: #00549a;
-  --cor-anais-suave: #eef4fa;
-  --cor-alego: #b8860b;
-  --cor-alego-suave: #fff8e7;
-  --cor-orcid: #a6ce39;
-  --cor-orcid-suave: #f1f8e9;
-  --cor-academia: #41454a;
-  --cor-academia-suave: #eceef0;
-  --cor-github: #24292e;
-  --cor-github-suave: #ebedef;
-  --cor-email: #1b4965;
-  --cor-email-suave: #eef4f8;
-  --sombra: 0 2px 8px rgba(31, 41, 51, 0.08);
-  --sombra-hover: 0 4px 16px rgba(31, 41, 51, 0.12);
-  --raio: 8px;
-  --transicao: 0.25s ease;
-  --max-largura: 960px;
+  /* Paleta Oficial inspirada na SSRN (Elsevier) */
+  --ssrn-logo-blue: #12487E;       /* Azul clássico do logotipo serifado SSRN */
+  --ssrn-navy-deep: #0D3B66;       /* Azul marinho profundo dos botões e cabeçalho */
+  --ssrn-interactive: #0066CC;     /* Azul acadêmico de links ativos e autor */
+  --ssrn-surface-ice: #F4F6F9;     /* Cinza-gelo dos painéis Paper Statistics */
+  --ssrn-surface-card: #FFFFFF;    /* Fundo branco de alto contraste para leitura */
+  --ssrn-bg-page: #FAFBFD;         /* Fundo geral da página levemente acetinado */
+  --ssrn-border-subtle: #DCE3EC;   /* Linhas divisórias editoriais */
+  --ssrn-heading-ink: #1A1A1A;     /* Grafite escuro dos títulos da SSRN */
+  --ssrn-body-slate: #2D3748;      /* Cinza ardósia para textos densos */
+  --ssrn-meta-muted: #5A6577;      /* Cinza médio para datas, páginas e locais */
+
+  /* Famílias Tipográficas */
+  --font-serif-title: 'Libre Baskerville', 'EB Garamond', Georgia, serif;
+  --font-serif-wordmark: 'EB Garamond', 'Times New Roman', serif;
+  --font-sans-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Espaçamento e Layout */
+  --max-width: 1080px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --shadow-card: 0 2px 8px rgba(13, 59, 102, 0.05);
+  --shadow-hover: 0 6px 16px rgba(18, 72, 126, 0.10);
 }
 
-/* ---------- RESET ---------- */
-*,
-*::before,
-*::after {
+/* Reset e Base */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -57,1033 +38,467 @@
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--cor-fundo);
-  color: var(--cor-texto);
-  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
   font-size: 16px;
 }
 
-/* ---------- CONTAINER ---------- */
-.container {
-  max-width: var(--max-largura);
-  margin: 0 auto;
+body {
+  font-family: var(--font-sans-body);
+  color: var(--ssrn-body-slate);
+  background-color: var(--ssrn-bg-page);
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- ACESSIBILIDADE ---------- */
-.visually-hidden {
-  position: absolute !important;
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.sr-only {
+  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
   border: 0;
 }
 
-a:focus-visible,
-button:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--cor-acento);
-  outline-offset: 3px;
-  border-radius: 4px;
+/* Reprodução tipográfica fiel do Logotipo SSRN */
+.ssrn-wordmark {
+  font-family: var(--font-serif-wordmark);
+  color: var(--ssrn-logo-blue);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  font-size: 1.06em;
 }
 
-/* ---------- HEADER ---------- */
-header#cabecalho {
-  background: linear-gradient(135deg, var(--cor-primaria) 0%, #143a52 100%);
-  color: #ffffff;
-  padding: 2.5rem 1.5rem 2rem;
-  text-align: center;
-  box-shadow: var(--sombra);
+/* ==========================================================================
+   CABEÇALHO INSTITUCIONAL E NAVEGAÇÃO
+   ========================================================================== */
+
+.site-header {
+  background-color: var(--ssrn-surface-card);
+  border-top: 5px solid var(--ssrn-navy-deep);
+  border-bottom: 1px solid var(--ssrn-border-subtle);
+  padding: 2.25rem 0 1.5rem;
+  box-shadow: 0 1px 4px rgba(13, 59, 102, 0.04);
 }
 
-header#cabecalho h1 {
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.identity-block h1 {
+  font-family: var(--font-serif-title);
   font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
+  color: var(--ssrn-heading-ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.35rem;
 }
 
-header#cabecalho .tagline,
-header#cabecalho p {
-  font-size: 1.05rem;
-  color: #d6e2ec;
-  font-weight: 400;
-  max-width: 640px;
-  margin: 0 auto;
+.identity-block .subtitle {
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--ssrn-logo-blue);
+  margin-bottom: 0.2rem;
 }
 
-/* ---------- NAVEGAÇÃO ---------- */
-nav#navegacao {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: var(--cor-surface);
-  border-bottom: 1px solid #e3e8ef;
-  box-shadow: var(--sombra);
+.identity-block .affiliation {
+  font-size: 0.94rem;
+  color: var(--ssrn-meta-muted);
 }
 
-nav#navegacao ul {
+.main-nav ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.5rem;
-  max-width: var(--max-largura);
-  margin: 0 auto;
-  padding: 0.75rem 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ssrn-surface-ice);
 }
 
-nav#navegacao a {
+.main-nav a {
   display: inline-block;
-  color: var(--cor-primaria);
-  text-decoration: none;
+  font-family: var(--font-sans-body);
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 6px;
-  transition: background-color var(--transicao), color var(--transicao);
+  color: var(--ssrn-navy-deep);
+  text-decoration: none;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--ssrn-surface-ice);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
 
-nav#navegacao a:hover {
-  background-color: var(--cor-ano-2026);
-  color: var(--cor-acento);
+.main-nav a:hover,
+.main-nav a:focus {
+  background-color: var(--ssrn-navy-deep);
+  color: #FFFFFF;
 }
 
-/* ---------- MAIN ---------- */
+/* ==========================================================================
+   SEÇÕES E TÍTULOS
+   ========================================================================== */
+
 main {
-  max-width: var(--max-largura);
-  margin: 2rem auto;
-  padding: 0 1.5rem;
+  padding: 2.5rem 0 3.5rem;
 }
 
-/* ---------- SEÇÕES ---------- */
-section#referencias,
-section#publicacoes,
-section#eventos,
-section#contatos {
-  background-color: var(--cor-surface);
-  border-radius: var(--raio);
-  box-shadow: var(--sombra);
-  padding: 2rem 1.75rem;
-  margin-bottom: 2rem;
-  transition: box-shadow var(--transicao);
+.section-block {
+  margin-bottom: 3.25rem;
 }
 
-section#referencias:hover,
-section#publicacoes:hover,
-section#eventos:hover,
-section#contatos:hover {
-  box-shadow: var(--sombra-hover);
+.section-header {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ssrn-border-subtle);
+  padding-bottom: 0.55rem;
 }
 
-section#referencias h2,
-section#publicacoes h2,
-section#eventos h2,
-section#contatos h2 {
-  font-size: 1.5rem;
-  color: var(--cor-primaria);
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--cor-ano-2026);
+.section-header h2 {
+  font-family: var(--font-serif-title);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--ssrn-heading-ink);
+  border-left: 4px solid var(--ssrn-logo-blue);
+  padding-left: 0.75rem;
 }
 
-/* ---------- TIERS ---------- */
-.tier {
-  border-left: 5px solid var(--cor-tier-1);
-  background-color: var(--cor-surface);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.25rem;
-  border-radius: 0 var(--raio) var(--raio) 0;
-  transition: transform var(--transicao), box-shadow var(--transicao);
-}
+/* ==========================================================================
+   SEÇÃO 1: GRADE DE REFERÊNCIAS
+   ========================================================================== */
 
-.tier:hover {
-  transform: translateX(4px);
-  box-shadow: var(--sombra-hover);
-}
-
-/* ---------- TIERS — estrutura geral ---------- */
-.tier h3 {
-  font-size: 1.15rem;
-  color: var(--cor-primaria);
-  margin-bottom: 0.75rem;
-}
-
-.tier p {
-  color: var(--cor-texto-suave);
-  font-size: 0.98rem;
-}
-
-/* ---------- TIERS — links modernos ---------- */
-.tier ul {
-  list-style: none;
+.ref-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
 }
 
-.tier li {
-  margin: 0;
+.ref-card {
+  background-color: var(--ssrn-surface-card);
+  border: 1px solid var(--ssrn-border-subtle);
+  border-top: 3px solid var(--ssrn-logo-blue);
+  border-radius: var(--radius-sm);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.tier a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.85rem 1.1rem;
-  background-color: var(--cor-surface);
-  border: 1px solid #e3e8ef;
-  border-left: 4px solid var(--cor-tier-1);
-  border-radius: var(--raio);
-  color: var(--cor-texto);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  transition: transform var(--transicao),
-              box-shadow var(--transicao),
-              border-color var(--transicao);
-  position: relative;
-  overflow: hidden;
-}
-
-.tier a::after {
-  content: "↗";
-  margin-left: auto;
-  font-size: 0.85rem;
-  color: var(--cor-texto-suave);
-  opacity: 0.5;
-  transition: opacity var(--transicao), transform var(--transicao);
-}
-
-.tier a:hover {
+.ref-card:hover {
+  box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
-  box-shadow: var(--sombra-hover);
-  border-color: var(--cor-acento);
 }
 
-.tier a:hover::after {
-  opacity: 1;
-  transform: translate(2px, -2px);
+.ref-card h3 {
+  font-family: var(--font-serif-title);
+  font-size: 1.02rem;
+  color: var(--ssrn-navy-deep);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--ssrn-surface-ice);
 }
 
-.tier a:focus-visible {
-  outline: 3px solid var(--cor-acento);
-  outline-offset: 2px;
-}
-
-/* Sigla + Nome institucional (Tier 4) */
-.tier a .inst-sigla {
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 0.15rem 0.5rem;
-  border-radius: 4px;
-  background-color: var(--cor-tier-4);
-  color: #ffffff;
-  flex-shrink: 0;
-}
-
-.tier a .inst-nome {
-  font-weight: 600;
-  font-size: 0.92rem;
-  color: var(--cor-texto);
-}
-
-/* ---------- Tier 1 ---------- */
-.tier[data-tipo="tier-1"] {
-  border-left-color: var(--cor-tier-1);
-}
-
-.tier[data-tipo="tier-1"] h3 {
-  color: var(--cor-tier-1);
-}
-
-.tier[data-tipo="tier-1"] a {
-  border-left-color: var(--cor-tier-1);
-}
-
-.tier[data-tipo="tier-1"] a:hover {
-  border-color: var(--cor-tier-1);
-}
-
-/* ---------- Tier 2 ---------- */
-.tier[data-tipo="tier-2"] {
-  border-left-color: var(--cor-tier-2);
-}
-
-.tier[data-tipo="tier-2"] h3 {
-  color: var(--cor-tier-2);
-}
-
-.tier[data-tipo="tier-2"] a {
-  border-left-color: var(--cor-tier-2);
-}
-
-.tier[data-tipo="tier-2"] a:hover {
-  border-color: var(--cor-tier-2);
-}
-
-/* ---------- Tier 3 ---------- */
-.tier[data-tipo="tier-3"] {
-  border-left-color: var(--cor-tier-3);
-}
-
-.tier[data-tipo="tier-3"] h3 {
-  color: var(--cor-tier-3);
-}
-
-.tier[data-tipo="tier-3"] a {
-  border-left-color: var(--cor-tier-3);
-}
-
-.tier[data-tipo="tier-3"] a:hover {
-  border-color: var(--cor-tier-3);
-}
-
-/* ---------- Tier 4 — Instituições de Ensino ---------- */
-.tier[data-tipo="tier-4"] {
-  border-left-color: var(--cor-tier-4);
-}
-
-.tier[data-tipo="tier-4"] h3 {
-  color: var(--cor-tier-4);
-}
-
-.tier[data-tipo="tier-4"] a {
-  border-left-color: var(--cor-tier-4);
-}
-
-.tier[data-tipo="tier-4"] a:hover {
-  border-color: var(--cor-tier-4);
-  box-shadow: 0 4px 16px rgba(0, 84, 154, 0.15);
-}
-
-/* Badge ESPC */
-.tier[data-tipo="tier-4"] a[href*="policiacivil"] .inst-sigla,
-.tier[data-tipo="tier-4"] a[href*="espc"] .inst-sigla {
-  background-color: var(--cor-inst-espc);
-}
-
-.tier[data-tipo="tier-4"] a[href*="policiacivil"]:hover,
-.tier[data-tipo="tier-4"] a[href*="espc"]:hover {
-  border-color: var(--cor-inst-espc);
-  box-shadow: 0 4px 16px rgba(0, 84, 154, 0.15);
-}
-
-.tier[data-tipo="tier-4"] a[href*="policiacivil"]:hover .inst-sigla,
-.tier[data-tipo="tier-4"] a[href*="espc"]:hover .inst-sigla {
-  background-color: #003d6e;
-}
-
-/* Badge UFCAT */
-.tier[data-tipo="tier-4"] a[href*="ufcat"] .inst-sigla {
-  background: linear-gradient(135deg, var(--cor-inst-ufcat) 0%, var(--cor-inst-ufcat-acento) 100%);
-}
-
-.tier[data-tipo="tier-4"] a[href*="ufcat"]:hover {
-  border-color: var(--cor-inst-ufcat);
-  box-shadow: 0 4px 16px rgba(26, 82, 118, 0.15);
-}
-
-.tier[data-tipo="tier-4"] a[href*="ufcat"]:hover .inst-sigla {
-  background: linear-gradient(135deg, #14485f 0%, #c46d18 100%);
-}
-
-/* ---------- PUBLICAÇÕES ---------- */
-section#publicacoes ol {
+.ref-card ul {
   list-style: none;
-  counter-reset: publicacao;
-}
-
-.publicacao {
-  counter-increment: publicacao;
-  background-color: var(--cor-surface);
-  border: 1px solid #e3e8ef;
-  border-radius: var(--raio);
-  padding: 1.25rem 1.5rem 1.25rem 3rem;
-  margin-bottom: 1rem;
-  position: relative;
-  transition: box-shadow var(--transicao), border-color var(--transicao);
-}
-
-.publicacao::before {
-  content: counter(publicacao);
-  position: absolute;
-  left: 1rem;
-  top: 1.25rem;
-  width: 1.75rem;
-  height: 1.75rem;
-  background-color: var(--cor-primaria);
-  color: #ffffff;
-  border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 700;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
-.publicacao:hover {
-  box-shadow: var(--sombra-hover);
-  border-color: var(--cor-acento);
-}
-
-.publicacao h3 {
-  font-size: 1.1rem;
-  color: var(--cor-texto);
-  margin-bottom: 0.4rem;
-  line-height: 1.35;
-}
-
-.publicacao h3 .subtitulo-pub {
-  display: block;
+.ref-card a {
+  color: var(--ssrn-interactive);
+  text-decoration: none;
+  font-weight: 500;
   font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--cor-texto-suave);
-  font-style: italic;
-  margin-top: 0.15rem;
+  display: inline-block;
+  transition: color 0.15s ease;
 }
 
-.publicacao .meta {
-  color: var(--cor-texto-suave);
-  font-size: 0.88rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.01em;
-}
-
-.publicacao p {
-  color: var(--cor-texto-suave);
-  font-size: 0.92rem;
-  margin-bottom: 0.4rem;
-}
-
-/* ---------- LINKS DE PUBLICAÇÃO (pílulas) ---------- */
-.links-publicacao {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.link-pub {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid;
-  transition: background-color var(--transicao),
-              color var(--transicao),
-              box-shadow var(--transicao),
-              transform var(--transicao);
-  white-space: nowrap;
-  line-height: 1.3;
-}
-
-.link-pub::after {
-  content: "↗";
-  font-size: 0.72rem;
-  opacity: 0.55;
-  transition: opacity var(--transicao), transform var(--transicao);
-}
-
-.link-pub:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.link-pub:hover::after {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
-.link-pub:focus-visible {
-  outline: 3px solid var(--cor-acento);
-  outline-offset: 2px;
-}
-
-/* Variante SindePol */
-.link-sindepol {
-  background-color: var(--cor-sindepol-suave);
-  border-color: var(--cor-sindepol);
-  color: var(--cor-sindepol);
-}
-
-.link-sindepol:hover {
-  background-color: var(--cor-sindepol);
-  color: #ffffff;
-}
-
-/* Variante Anais / Congresso */
-.link-anais {
-  background-color: var(--cor-anais-suave);
-  border-color: var(--cor-anais);
-  color: var(--cor-anais);
-}
-
-.link-anais:hover {
-  background-color: var(--cor-anais);
-  color: #ffffff;
-}
-
-/* Variante DOI / Zenodo */
-.link-doi {
-  background-color: var(--cor-ano-2026);
-  border-color: var(--cor-acento);
-  color: var(--cor-acento);
-}
-
-.link-doi:hover {
-  background-color: var(--cor-acento);
-  color: #ffffff;
-}
-
-/* Ano 2025 */
-.publicacao[data-ano="2025"] {
-  background-color: var(--cor-ano-2025);
-}
-
-/* Ano 2026 */
-.publicacao[data-ano="2026"] {
-  background-color: var(--cor-ano-2026);
-}
-
-/* ---------- EVENTOS ---------- */
-section#eventos ol {
-  list-style: none;
-  counter-reset: evento;
-}
-
-.evento {
-  counter-increment: evento;
-  background-color: var(--cor-surface);
-  border: 1px solid #e3e8ef;
-  border-radius: var(--raio);
-  padding: 1.25rem 1.5rem 1.25rem 3rem;
-  margin-bottom: 1rem;
-  position: relative;
-  transition: box-shadow var(--transicao), border-color var(--transicao);
-}
-
-.evento::before {
-  content: counter(evento);
-  position: absolute;
-  left: 1rem;
-  top: 1.25rem;
-  width: 1.75rem;
-  height: 1.75rem;
-  background-color: var(--cor-acento);
-  color: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.evento:hover {
-  box-shadow: var(--sombra-hover);
-  border-color: var(--cor-acento);
-}
-
-.evento h3 {
-  font-size: 1.1rem;
-  color: var(--cor-texto);
-  margin-bottom: 0.4rem;
-}
-
-.evento .meta,
-.evento p {
-  color: var(--cor-texto-suave);
-  font-size: 0.92rem;
-  margin-bottom: 0.4rem;
-}
-
-/* ---------- LINKS DE EVENTOS (pílulas) ---------- */
-.links-evento {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-}
-
-.link-evt {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid;
-  transition: background-color var(--transicao),
-              color var(--transicao),
-              box-shadow var(--transicao),
-              transform var(--transicao);
-  white-space: nowrap;
-  line-height: 1.3;
-}
-
-.link-evt::after {
-  content: "↗";
-  font-size: 0.72rem;
-  opacity: 0.55;
-  transition: opacity var(--transicao), transform var(--transicao);
-}
-
-.link-evt:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.link-evt:hover::after {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
-.link-evt:focus-visible {
-  outline: 3px solid var(--cor-acento);
-  outline-offset: 2px;
-}
-
-/* Variante ESPC / Congresso Goiano */
-.link-espc {
-  background-color: var(--cor-anais-suave);
-  border-color: var(--cor-anais);
-  color: var(--cor-anais);
-}
-
-.link-espc:hover {
-  background-color: var(--cor-anais);
-  color: #ffffff;
-}
-
-/* Variante UFCAT — azul institucional com acento laranja da marca */
-.link-ufcat {
-  background-color: var(--cor-ufcat-suave);
-  border-color: var(--cor-ufcat);
-  color: var(--cor-ufcat);
-}
-
-.link-ufcat:hover {
-  background: linear-gradient(135deg, var(--cor-ufcat) 0%, var(--cor-inst-ufcat-acento) 100%);
-  color: #ffffff;
-}
-
-/* Variante ALEGO / CPI */
-.link-alego {
-  background-color: var(--cor-alego-suave);
-  border-color: var(--cor-alego);
-  color: var(--cor-alego);
-}
-
-.link-alego:hover {
-  background-color: var(--cor-alego);
-  color: #ffffff;
-}
-
-/* Ano 2025 */
-.evento[data-ano="2025"] {
-  background-color: var(--cor-ano-2025);
-}
-
-/* Ano 2026 */
-.evento[data-ano="2026"] {
-  background-color: var(--cor-ano-2026);
-}
-
-/* Destaque (CPI) */
-.evento[data-destaque="true"],
-.evento[data-destaque] {
-  background-color: var(--cor-destaque);
-  border-left: 5px solid var(--cor-tier-3);
-  font-weight: 500;
-}
-
-.evento[data-destaque="true"] h3,
-.evento[data-destaque] h3 {
-  color: var(--cor-tier-3);
-}
-
-/* ---------- CONTATOS ---------- */
-section#contatos ul,
-.lista-contatos {
-  list-style: none;
-}
-
-.lista-contatos li {
-  background-color: var(--cor-surface);
-  border: 1px solid #e3e8ef;
-  border-radius: var(--raio);
-  padding: 0.85rem 1.25rem;
-  margin-bottom: 0.75rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  transition: border-color var(--transicao), box-shadow var(--transicao);
-}
-
-.lista-contatos li:hover {
-  border-color: var(--cor-acento);
-  box-shadow: var(--sombra);
-}
-
-.lista-contatos li .rotulo,
-.lista-contatos li strong {
-  color: var(--cor-primaria);
-  font-weight: 700;
-  min-width: 120px;
-}
-
-/* ---------- LINKS DE CONTATOS (pílulas) ---------- */
-.link-contato {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid;
-  transition: background-color var(--transicao),
-              color var(--transicao),
-              box-shadow var(--transicao),
-              transform var(--transicao);
-  word-break: break-all;
-  line-height: 1.3;
-}
-
-.link-contato::after {
-  content: "↗";
-  font-size: 0.72rem;
-  opacity: 0.55;
-  transition: opacity var(--transicao), transform var(--transicao);
-}
-
-.link-contato:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.link-contato:hover::after {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
-.link-contato:focus-visible {
-  outline: 3px solid var(--cor-acento);
-  outline-offset: 2px;
-}
-
-/* Variante Email */
-.link-email {
-  background-color: var(--cor-email-suave);
-  border-color: var(--cor-email);
-  color: var(--cor-email);
-}
-
-.link-email:hover {
-  background-color: var(--cor-email);
-  color: #ffffff;
-}
-
-/* Email não é link externo — ícone de envelope */
-.link-email::after {
-  content: "✉";
-  opacity: 0.5;
-}
-
-/* Variante ORCID */
-.link-orcid {
-  background-color: var(--cor-orcid-suave);
-  border-color: var(--cor-orcid);
-  color: #5a7d1e;
-}
-
-.link-orcid:hover {
-  background-color: var(--cor-orcid);
-  color: #ffffff;
-}
-
-/* Variante Academia.edu */
-.link-academia {
-  background-color: var(--cor-academia-suave);
-  border-color: var(--cor-academia);
-  color: var(--cor-academia);
-}
-
-.link-academia:hover {
-  background-color: var(--cor-academia);
-  color: #ffffff;
-}
-
-/* Variante GitHub */
-.link-github {
-  background-color: var(--cor-github-suave);
-  border-color: var(--cor-github);
-  color: var(--cor-github);
-}
-
-.link-github:hover {
-  background-color: var(--cor-github);
-  color: #ffffff;
-}
-
-/* ---------- FOOTER ---------- */
-footer#rodape {
-  background-color: #143a52;
-  color: #d6e2ec;
-  text-align: center;
-  padding: 2rem 1.5rem;
-  margin-top: 2rem;
-}
-
-footer#rodape p {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-footer#rodape a {
-  color: var(--cor-acento);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-footer#rodape a:hover {
+.ref-card a:hover {
+  color: var(--ssrn-navy-deep);
   text-decoration: underline;
 }
 
-/* =============================================================
+.institution-list li a {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ssrn-surface-ice);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--ssrn-logo-blue);
+  text-decoration: none !important;
+}
+
+.inst-acronym {
+  font-weight: 700;
+  color: var(--ssrn-navy-deep);
+  font-size: 0.95rem;
+}
+
+.inst-name {
+  font-size: 0.84rem;
+  color: var(--ssrn-meta-muted);
+}
+
+/* ==========================================================================
+   SEÇÕES 2 E 3: PUBLICAÇÕES E EVENTOS (CARDS EDITORIAIS SSRN)
+   ========================================================================== */
+
+.timeline-list {
+  list-style: none;
+  counter-reset: scholarly-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.pub-card,
+.event-card {
+  counter-increment: scholarly-counter;
+  position: relative;
+  background-color: var(--ssrn-surface-card);
+  border: 1px solid var(--ssrn-border-subtle);
+  border-left: 4px solid var(--ssrn-logo-blue);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease;
+}
+
+.pub-card:hover,
+.event-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.pub-card-featured {
+  border-top: 3px solid var(--ssrn-navy-deep);
+  border-left: 4px solid var(--ssrn-navy-deep);
+}
+
+.pub-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.badge-ssrn {
+  background-color: var(--ssrn-surface-ice);
+  border: 1px solid var(--ssrn-border-subtle);
+  color: var(--ssrn-navy-deep);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+}
+
+.badge-meta {
+  background-color: #EEF2F6;
+  color: var(--ssrn-meta-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+}
+
+.pub-card h3,
+.event-card h3 {
+  font-family: var(--font-serif-title);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--ssrn-heading-ink);
+  line-height: 1.42;
+  margin-bottom: 0.45rem;
+}
+
+.pub-subtitle {
+  display: block;
+  font-family: var(--font-serif-title);
+  font-weight: 400;
+  font-size: 1.02rem;
+  color: var(--ssrn-body-slate);
+  margin-top: 0.25rem;
+}
+
+.pub-subtitle-en {
+  display: block;
+  font-family: var(--font-serif-title);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.98rem;
+  color: var(--ssrn-logo-blue);
+  margin-top: 0.45rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--ssrn-border-subtle);
+}
+
+.item-meta {
+  font-size: 0.92rem;
+  color: var(--ssrn-meta-muted);
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+
+/* Painel de Classificações SSRN (Inspirado em Paper Statistics / Alert Classifications) */
+.ssrn-classification-panel {
+  background-color: var(--ssrn-surface-ice);
+  border: 1px solid var(--ssrn-border-subtle);
+  border-left: 3px solid var(--ssrn-navy-deep);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.15rem;
+  margin: 0.95rem 0 1.15rem;
+}
+
+.ssrn-classification-panel h4 {
+  font-family: var(--font-sans-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ssrn-navy-deep);
+  margin-bottom: 0.5rem;
+}
+
+.ssrn-classification-panel ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  color: var(--ssrn-body-slate);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Botões de Ação (Padrão Botão "Follow" da SSRN #0D3B66) */
+.action-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--ssrn-navy-deep);
+  color: #FFFFFF !important;
+  font-family: var(--font-sans-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 3px;
+  border: 1px solid var(--ssrn-navy-deep);
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--ssrn-logo-blue);
+  border-color: var(--ssrn-logo-blue);
+}
+
+.btn-outline {
+  display: inline-block;
+  background-color: #FFFFFF;
+  color: var(--ssrn-logo-blue) !important;
+  font-family: var(--font-sans-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: 3px;
+  border: 1px solid var(--ssrn-logo-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--ssrn-surface-ice);
+  color: var(--ssrn-navy-deep) !important;
+  border-color: var(--ssrn-navy-deep);
+}
+
+/* ==========================================================================
+   SEÇÃO 4: CONTATOS E IDENTIFICADORES
+   ========================================================================== */
+
+.contact-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.contact-grid li {
+  background-color: var(--ssrn-surface-card);
+  border: 1px solid var(--ssrn-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.95rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.contact-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ssrn-meta-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.contact-grid a {
+  color: var(--ssrn-interactive);
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.contact-grid a:hover {
+  color: var(--ssrn-navy-deep);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--ssrn-navy-deep);
+  color: #E2E8F0;
+  padding: 1.75rem 0;
+  text-align: center;
+  font-size: 0.92rem;
+  border-top: 3px solid var(--ssrn-logo-blue);
+}
+
+/* ==========================================================================
    RESPONSIVIDADE
-   ============================================================= */
+   ========================================================================== */
 
-/* ---------- TABLET (768px) ---------- */
 @media (max-width: 768px) {
-  header#cabecalho {
-    padding: 2rem 1rem 1.5rem;
-  }
-
-  header#cabecalho h1 {
+  .identity-block h1 {
     font-size: 1.6rem;
   }
 
-  header#cabecalho .tagline,
-  header#cabecalho p {
-    font-size: 0.98rem;
+  .pub-card,
+  .event-card {
+    padding: 1.2rem 1.25rem;
   }
 
-  nav#navegacao ul {
-    gap: 0.25rem;
-    padding: 0.5rem 0.75rem;
-  }
-
-  nav#navegacao a {
-    font-size: 0.88rem;
-    padding: 0.35rem 0.65rem;
-  }
-
-  main {
-    padding: 0 1rem;
-    margin: 1.5rem auto;
-  }
-
-  section#referencias,
-  section#publicacoes,
-  section#eventos,
-  section#contatos {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .tier {
-    padding: 1rem 1.25rem;
-  }
-
-  .tier ul {
-    grid-template-columns: 1fr;
-  }
-
-  .publicacao,
-  .evento {
-    padding-left: 2.75rem;
-  }
-
-  .link-pub,
-  .link-evt {
-    font-size: 0.74rem;
-    padding: 0.35rem 0.7rem;
-  }
-
-  .link-contato {
-    font-size: 0.78rem;
-    padding: 0.35rem 0.7rem;
-  }
-
-  .lista-contatos li {
+  .action-links {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
   }
 
-  .lista-contatos li .rotulo,
-  .lista-contatos li strong {
-    min-width: auto;
-  }
-}
-
-/* ---------- MOBILE (480px) ---------- */
-@media (max-width: 480px) {
-  body {
-    font-size: 15px;
-  }
-
-  header#cabecalho {
-    padding: 1.5rem 1rem 1.25rem;
-  }
-
-  header#cabecalho h1 {
-    font-size: 1.35rem;
-  }
-
-  header#cabecalho .tagline,
-  header#cabecalho p {
-    font-size: 0.9rem;
-  }
-
-  nav#navegacao ul {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.25rem;
-  }
-
-  nav#navegacao a {
-    display: block;
+  .btn-primary,
+  .btn-outline {
     text-align: center;
-    padding: 0.5rem 0.75rem;
-  }
-
-  main {
-    padding: 0 0.75rem;
-    margin: 1rem auto;
-  }
-
-  section#referencias,
-  section#publicacoes,
-  section#eventos,
-  section#contatos {
-    padding: 1.25rem 1rem;
-    margin-bottom: 1.25rem;
-  }
-
-  section#referencias h2,
-  section#publicacoes h2,
-  section#eventos h2,
-  section#contatos h2 {
-    font-size: 1.25rem;
-  }
-
-  .tier {
-    padding: 0.9rem 1rem;
-    border-left-width: 4px;
-  }
-
-  .tier:hover {
-    transform: none;
-  }
-
-  .tier a {
-    padding: 0.75rem 0.9rem;
-    font-size: 0.88rem;
-  }
-
-  .tier a .inst-sigla {
-    font-size: 0.72rem;
-    padding: 0.1rem 0.4rem;
-  }
-
-  .tier a .inst-nome {
-    font-size: 0.85rem;
-  }
-
-  .tier a::after {
-    font-size: 0.78rem;
-  }
-
-  .publicacao,
-  .evento {
-    padding: 1rem 1rem 1rem 2.75rem;
-  }
-
-  .publicacao::before,
-  .evento::before {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 0.78rem;
-  }
-
-  .publicacao h3,
-  .evento h3 {
-    font-size: 1rem;
-  }
-
-  .links-publicacao,
-  .links-evento {
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .link-pub,
-  .link-evt {
-    font-size: 0.72rem;
-    padding: 0.4rem 0.75rem;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .link-contato {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.75rem;
-  }
-
-  .lista-contatos li {
-    padding: 0.85rem 1rem;
-  }
-
-  footer#rodape {
-    padding: 1.5rem 1rem;
-  }
-}
-
-/* ---------- MOTION REDUCED ---------- */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .tier:hover,
-  .publicacao:hover,
-  .evento:hover {
-    transform: none;
+    width: 100%;
   }
 }
